@@ -5,6 +5,7 @@ const COLORS = {
   primary: "#6A0DAD",
   secondary: "#00F0A8",
   // tertiary: "#c0b000",
+  forInputs: "#6A0DAD11",
 
   green: "#008000",
   red: "#EC1717",

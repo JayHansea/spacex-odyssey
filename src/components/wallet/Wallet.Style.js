@@ -12,23 +12,25 @@ const styles = StyleSheet.create({
   walletInfo: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: SIZES.xLarge,
   },
   balance: {
     color: COLORS.white,
     marginRight: SIZES.medium,
     fontSize: SIZES.xxLarge,
   },
-  buttonContainer: {
-    alignItems: "flex-end",
-  },
-  button: {
+  buttonContainer: (alignItems) => ({
+    alignItems: alignItems,
+    marginTop: SIZES.xLarge,
+  }),
+  button: (width) => ({
     backgroundColor: COLORS.secondary,
-    width: "40%",
+    width: width,
     alignItems: "center",
     paddingHorizontal: SIZES.xLarge,
     paddingVertical: SIZES.small,
     borderRadius: SIZES.medium,
+  }),
+  shadow: {
     ...SHADOWS.medium,
   },
   modalTransparentView: {
@@ -43,12 +45,19 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     padding: SIZES.medium,
     width: SIZES.width,
-    height: SIZES.height * 0.4,
+    height: SIZES.height * 0.45,
     borderTopRightRadius: SIZES.medium,
     borderTopLeftRadius: SIZES.medium,
   },
   closeModalButton: {
     alignItems: "center",
+  },
+  input: {
+    height: 50,
+    marginVertical: SIZES.medium,
+    padding: 10,
+    backgroundColor: COLORS.forInputs,
+    borderRadius: SIZES.medium,
   },
 });
 
