@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     marginRight: SIZES.medium,
     fontSize: SIZES.xxLarge,
+    marginBottom: SIZES.small,
   },
   buttonContainer: (alignItems) => ({
     alignItems: alignItems,
@@ -58,6 +59,16 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: COLORS.forInputs,
     borderRadius: SIZES.medium,
+  },
+  feedback: {
+    alignItems: "center",
+    marginVertical: 3,
+  },
+  successMessage: {
+    color: COLORS.green,
+  },
+  errorMessage: {
+    color: COLORS.red,
   },
 });
 
