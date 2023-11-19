@@ -25,6 +25,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: SIZES.medium,
   },
+  buttonText: {
+    color: COLORS.white,
+  },
+  noteView: {
+    marginVertical: SIZES.xSmall,
+  },
+  note: {
+    fontSize: SIZES.small,
+    fontStyle: "italic",
+  },
 });
 
 export default styles;
