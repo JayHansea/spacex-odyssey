@@ -2,9 +2,12 @@ import { StyleSheet, StatusBar } from "react-native";
 import { COLORS, SIZES } from "../../constants/theme";
 
 const styles = StyleSheet.create({
-  container: {
+  safeContainer: {
     paddingTop: StatusBar.currentHeight || 0,
-    paddingHorizontal: SIZES.medium,
+    paddingHorizontal: SIZES.large,
+    backgroundColor: COLORS.white,
+  },
+  scrollContainer: {
     backgroundColor: COLORS.white,
   },
   textContainer: {
