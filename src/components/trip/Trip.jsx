@@ -5,12 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./Trip.Style";
 import { SIZES } from "../../constants/theme";
 import { tripActions } from "../../store/tripSlice";
+import { walletActions } from "../../store/walletSlice";
 
 const Trip = () => {
   const dispatch = useDispatch();
-  const { departureStation, destination, spacecraft, fare } = useSelector(
+  const { departureStation, destination, spacecraft } = useSelector(
     (state) => state.trip
   );
+  const walletBalance = useSelector((state) => state.wallet.walletBalance);
+  const fare = useSelector((state) => state.trip.fare);
 
   const categories = [
     { key: "abuja", value: "Abuja" },
@@ -92,9 +95,18 @@ const Trip = () => {
   };
 
   const bookTrip = () => {
-    // Perform any necessary actions to book the trip
-    // You can dispatch additional actions or make API calls here
-    // For now, just reset the trip
+    if (walletBalance >= fare) {
+      // Deduct the trip fare from the wallet balance
+      dispatch(walletActions.deductFromWallet(fare));
+      // Display success feedback
+      console.log(
+        "Booking successful! Trip fare deducted from wallet balance."
+      );
+    } else {
+      // Display insufficient balance feedback
+      console.log("Insufficient balance. Please fund your wallet.");
+    }
+
     dispatch(tripActions.resetTrip());
   };
 
@@ -135,6 +147,10 @@ const Trip = () => {
         </Text>
       </View>
       <View style={styles.fareView}>
+        <Text style={styles.insufficient}>
+          {walletBalance < fare &&
+            "Insufficient balance. Please fund your wallet."}
+        </Text>
         <Text style={styles.fare}>Fare: {fare} btc</Text>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText} onPress={bookTrip}>

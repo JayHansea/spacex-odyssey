@@ -30,6 +30,10 @@ const walletSlice = createSlice({
     toggleAmountVisibility(state, action) {
       state.isAmountVisible = !state.isAmountVisible;
     },
+    deductFromWallet(state, action) {
+      const amount = action.payload;
+      state.walletBalance -= amount;
+    },
   },
 });
 
