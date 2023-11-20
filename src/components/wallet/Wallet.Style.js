@@ -31,6 +31,16 @@ const styles = StyleSheet.create({
     paddingVertical: SIZES.small,
     borderRadius: SIZES.medium,
   }),
+  modalButton: {
+    backgroundColor: COLORS.primary,
+    paddingHorizontal: SIZES.xLarge,
+    paddingVertical: SIZES.small,
+    borderRadius: SIZES.xSmall,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: COLORS.white,
+  },
   shadow: {
     ...SHADOWS.medium,
   },
@@ -50,15 +60,19 @@ const styles = StyleSheet.create({
     borderTopRightRadius: SIZES.medium,
     borderTopLeftRadius: SIZES.medium,
   },
+  modalCentered: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
   closeModalButton: {
     alignItems: "center",
   },
   input: {
     height: 50,
     marginVertical: SIZES.medium,
-    padding: 10,
-    backgroundColor: COLORS.forInputs,
-    borderRadius: SIZES.medium,
+    padding: SIZES.medium,
+    borderWidth: 1,
+    borderRadius: SIZES.xSmall,
   },
   feedback: {
     alignItems: "center",
@@ -69,6 +83,12 @@ const styles = StyleSheet.create({
   },
   errorMessage: {
     color: COLORS.red,
+  },
+  successText: {
+    color: COLORS.secondary,
+    fontSize: SIZES.xLarge,
+    fontWeight: "bold",
+    padding: SIZES.medium,
   },
 });
 
