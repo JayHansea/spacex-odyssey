@@ -38,6 +38,41 @@ const styles = StyleSheet.create({
   insufficient: {
     color: COLORS.red,
   },
+  modalTransparentView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.2)",
+  },
+  modalView: {
+    position: "absolute",
+    bottom: 0,
+    backgroundColor: COLORS.white,
+    padding: SIZES.medium,
+    width: SIZES.width,
+    height: SIZES.height * 0.45,
+    borderTopRightRadius: SIZES.medium,
+    borderTopLeftRadius: SIZES.medium,
+  },
+  modalCentered: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  successText: {
+    color: COLORS.secondary,
+    fontSize: SIZES.xLarge,
+    fontWeight: "bold",
+    padding: SIZES.medium,
+  },
+  modalButton: {
+    backgroundColor: COLORS.secondary,
+    padding: SIZES.medium,
+    width: "50%",
+    borderRadius: SIZES.medium,
+    alignItems: "center",
+    marginVertical: SIZES.medium,
+  },
+  modalButtonText: {},
 });
 
 export default styles;

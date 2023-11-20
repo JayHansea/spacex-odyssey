@@ -90,6 +90,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     padding: SIZES.medium,
   },
+  succesModalButton: {
+    backgroundColor: COLORS.secondary,
+    padding: SIZES.medium,
+    width: "50%",
+    borderRadius: SIZES.medium,
+    alignItems: "center",
+    marginVertical: SIZES.medium,
+  },
 });
 
 export default styles;

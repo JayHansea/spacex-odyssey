@@ -5,6 +5,7 @@ const initialState = {
   destination: "",
   spacecraft: "",
   fare: 0,
+  isBookingSuccessModalVisible: false,
 };
 
 const tripSlice = createSlice({
@@ -28,6 +29,9 @@ const tripSlice = createSlice({
       state.destination = "";
       state.spacecraft = "";
       state.fare = 0;
+    },
+    toggleBookingSuccessModal: (state) => {
+      state.isBookingSuccessModalVisible = !state.isBookingSuccessModalVisible;
     },
   },
 });

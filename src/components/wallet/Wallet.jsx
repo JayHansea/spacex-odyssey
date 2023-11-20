@@ -45,6 +45,9 @@ const Wallet = () => {
         <View style={[styles.modalView, styles.modalCentered]}>
           <Feather name="check-circle" size={100} color={COLORS.secondary} />
           <Text style={styles.successText}>Funding Successful</Text>
+          <Pressable style={styles.succesModalButton} onPress={closeModal}>
+            <Text style={styles.buttonText}>OK</Text>
+          </Pressable>
         </View>
       </Modal>
     );
