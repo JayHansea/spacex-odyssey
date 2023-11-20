@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { View, Text, Pressable, Modal, TextInput } from "react-native";
-import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
+import { Ionicons, SimpleLineIcons, Feather } from "@expo/vector-icons";
 import styles from "./Wallet.Style";
 import { useDispatch, useSelector } from "react-redux";
 import { walletActions } from "../../store/walletSlice";
+import { COLORS, SIZES } from "../../constants/theme";
 
 const Wallet = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,22 @@ const Wallet = () => {
     dispatch(walletActions.toggleAmountVisibility());
   };
 
+  const SuccessModal = () => {
+    return (
+      <Modal
+        visible={isModalOpen}
+        animationType="slide"
+        transparent={true}
+        onRequestClose={closeModal}
+      >
+        <View style={[styles.modalView, styles.modalCentered]}>
+          <Feather name="check-circle" size={100} color={COLORS.secondary} />
+          <Text style={styles.successText}>Funding Successful</Text>
+        </View>
+      </Modal>
+    );
+  };
+
   const ModalComponent = () => {
     return (
       <Modal
@@ -49,13 +66,7 @@ const Wallet = () => {
               </Pressable>
             </View>
             <View style={styles.feedback}>
-              {fundingSuccess && (
-                <>
-                  <Text style={styles.successMessage}>
-                    Funding success, close modal and book a trip!
-                  </Text>
-                </>
-              )}
+              {fundingSuccess && <>{SuccessModal()}</>}
             </View>
             <View style={styles.feedback}>
               {!fundingSuccess && btcAmount < 3000 && btcAmount !== "" && (
@@ -80,8 +91,8 @@ const Wallet = () => {
               />
             </View>
             <View style={styles.buttonContainer()}>
-              <Pressable style={styles.button} onPress={fundWallet}>
-                <Text>Fund SpaceX Wallet</Text>
+              <Pressable style={styles.modalButton} onPress={fundWallet}>
+                <Text style={styles.buttonText}>Fund SpaceX Wallet</Text>
               </Pressable>
             </View>
           </View>
@@ -109,7 +120,7 @@ const Wallet = () => {
           style={[styles.button("40%"), styles.shadow]}
           onPress={renderModal}
         >
-          <Text>Fund Account</Text>
+          <Text style={styles.buttonText}>Fund Account</Text>
         </Pressable>
       </View>
       {ModalComponent()}
