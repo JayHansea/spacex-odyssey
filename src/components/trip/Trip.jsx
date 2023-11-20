@@ -1,11 +1,12 @@
 import React from "react";
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, Modal } from "react-native";
 import { SelectList } from "react-native-dropdown-select-list";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Trip.Style";
-import { SIZES } from "../../constants/theme";
+import { SIZES, COLORS } from "../../constants/theme";
 import { tripActions } from "../../store/tripSlice";
 import { walletActions } from "../../store/walletSlice";
+import { Feather } from "@expo/vector-icons";
 
 const Trip = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,15 @@ const Trip = () => {
   );
   const walletBalance = useSelector((state) => state.wallet.walletBalance);
   const fare = useSelector((state) => state.trip.fare);
+  const isBookingSuccessModalVisible = useSelector(
+    (state) => state.trip.isBookingSuccessModalVisible
+  );
+
+  const closeSuccessModal = () => {
+    dispatch(tripActions.toggleBookingSuccessModal());
+    // You may also want to reset the trip state or perform any other necessary actions here
+    dispatch(tripActions.resetTrip());
+  };
 
   const categories = [
     { key: "abuja", value: "Abuja" },
@@ -99,9 +109,7 @@ const Trip = () => {
       // Deduct the trip fare from the wallet balance
       dispatch(walletActions.deductFromWallet(fare));
       // Display success feedback
-      console.log(
-        "Booking successful! Trip fare deducted from wallet balance."
-      );
+      dispatch(tripActions.toggleBookingSuccessModal()); // Show success modal
     } else {
       // Display insufficient balance feedback
       console.log("Insufficient balance. Please fund your wallet.");
@@ -109,6 +117,25 @@ const Trip = () => {
 
     dispatch(tripActions.resetTrip());
   };
+
+  const renderSuccessModal = () => (
+    <Modal
+      transparent={true}
+      animationType="slide"
+      visible={isBookingSuccessModalVisible}
+      onRequestClose={closeSuccessModal}
+    >
+      <View style={styles.modalTransparentView}>
+        <View style={[styles.modalView, styles.modalCentered]}>
+          <Feather name="check-circle" size={100} color={COLORS.secondary} />
+          <Text style={styles.successText}>Booking successful!</Text>
+          <Pressable style={styles.modalButton} onPress={closeSuccessModal}>
+            <Text style={styles.buttonText}>OK</Text>
+          </Pressable>
+        </View>
+      </View>
+    </Modal>
+  );
 
   return (
     <View>
@@ -158,6 +185,7 @@ const Trip = () => {
           </Text>
         </Pressable>
       </View>
+      {renderSuccessModal()}
     </View>
   );
 };
