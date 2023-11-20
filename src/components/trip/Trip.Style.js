@@ -35,6 +35,9 @@ const styles = StyleSheet.create({
     fontSize: SIZES.small,
     fontStyle: "italic",
   },
+  insufficient: {
+    color: COLORS.red,
+  },
 });
 
 export default styles;
